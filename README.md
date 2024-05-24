@@ -17,6 +17,7 @@ $ python3 -m venv pyenv
 $ source pyenv/bin/activate
 ```
 4. Install OPB solver
+This step is necessary to partition a ZK protocol into more than multiple parts.
 We have tested on Gurobi-10.0:
 [Gurobi](https://www.gurobi.com/downloads/gurobi-software/)
 5. Build
@@ -36,7 +37,9 @@ The prover coordinator then evaluates dependent variables using initial secret:
 $ dune exec -- ou eval --input examples/merkle.in.ou --proverdir merkle_prover --verifierdir merkle_verifier
 ```
 Both prover and verifier coordinators then compile their own code in two directories.
+Please follow this [guide](https://github.com/emp-toolkit/emp-zk) to install the dependent libraries before compiling the generated code.
 ```shell
+# enter merkle_prover/ and merkle_verifier/ and run
 $ make
 ```
 Both coordinators will obtain three executables: `part0`, `part1` and `part2`.
@@ -45,9 +48,10 @@ Each pair of prover and verifier run the same pair of executables on the same po
 ```shell
 $ ./part0 12345
 ```
+Note that the generated code assumes the executables from both sides are run in the same machine. But you can let them run on different machines by changing the communicating IP addresses in `part*.cpp`.
 
 # How to use (ZoKrates)
-
+TODO
 
 # Syntax Highlight
 If you are using vscode, you can enable syntax highlight for all `.ou` files by moving the `ou-vscode-syntax` directory into `~/.vscode/extensions/` if you use Linux or `%USERPROFILE%\.vscode\extensions` if you use Windows.

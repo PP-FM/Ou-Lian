@@ -30,7 +30,10 @@ let parse_options _ =
       is_cut := true
     else if modename = "eval" then
       is_cut := false
-    else raise (Arg.Bad "Mode must be cut|gen|eval")
+    else begin
+      print_endline modename;
+      raise (Arg.Bad "Mode must be cut|eval")
+    end
   in
   (* source file *)
   let opt_proto_filename = ref None in

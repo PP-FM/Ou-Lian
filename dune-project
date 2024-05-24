@@ -21,7 +21,7 @@
  (name ou-lang)
  (synopsis "Ou: A distributive zero knowledge Proof language")
  (description "A longer description")
- (depends ocaml dune menhir fmt logs logs.fmt alcotest)
+ (depends ocaml dune menhir fmt logs alcotest)
  (tags
   (topics "to describe" your project)))
 
