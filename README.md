@@ -16,8 +16,8 @@ $ opam install menhir dune fmt logs alcotest
 $ python3 -m venv pyenv
 $ source pyenv/bin/activate
 ```
-4. Install OPB solver
-This step is necessary to partition a ZK protocol into more than multiple parts.
+4. Install OPB solver.
+This step is necessary to partition a ZK protocol into multiple parts.
 We have tested on Gurobi-10.0:
 [Gurobi](https://www.gurobi.com/downloads/gurobi-software/)
 5. Build
