@@ -1,11 +1,7 @@
-#define size 100
+#define size 4
 
 plocal1 plc int[size] recv_coloring() {
-    // plc int[size] coloring = {0,1,2,1};
-    plc int[size] coloring = {0};
-    for int i = 0; i < size; i = i + 1; {
-        coloring[i] = i % 2;
-    }
+    plc int[size] coloring = {0,1,2,1};
     return coloring;
 }
 
