@@ -562,9 +562,9 @@ let add_rawdata_lvalue indent data lv =
   | Tfloat (Public _) | Tfloat (Plocal _)
   | Tbool (Public _) | Tbool (Plocal _) ->
     "" (* TODO: should add them *)
-  | Tint (Private _) -> indent ^ Printf.sprintf "OU_add_rawdata<Integer>(%s, %s);" data (emp_of_lvalue lv)
+  | Tint (Private _) -> indent ^ Printf.sprintf "OU_add_int(%s, %s);" data (emp_of_lvalue lv)
   | Tfloat (Private _) -> indent ^ Printf.sprintf "OU_add_Float(%s, %s);" data (emp_of_lvalue lv)
-  | Tbool (Private _) -> indent ^ Printf.sprintf "OU_add_rawdata<Bit>(%s, %s);" data (emp_of_lvalue lv)
+  | Tbool (Private _) -> indent ^ Printf.sprintf "OU_add_bit(%s, %s);" data (emp_of_lvalue lv)
   | _ -> raise (FatalInGen "TODO")
 
 let output_def_produces _ oc frag =
@@ -1036,10 +1036,13 @@ bool operator<(const HashEdge &lhs, const HashEdge &rhs) {
   return lhs.src_id < rhs.src_id || (lhs.src_id == rhs.src_id && lhs.dst_id < rhs.dst_id);
 }
 
-template<typename T>
-void OU_add_rawdata(vector<block> &data, const T &x) {
+void Ou_add_bit(vector<block> &data, const Bit &x) {
+  data.push_back(x.bit);
+}
+
+void Ou_add_int(vector<block> &data, const Integer &x) {
   for(size_t i = 0; i < x.size(); ++i)
-    data.push_back((block)x[i].bit);
+    data.push_back(x[i].bit);
 }
 
 void OU_add_Float(vector<block> &data, const Float &x) {
